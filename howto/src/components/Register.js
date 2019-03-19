@@ -1,38 +1,39 @@
 import React from "react";
 import { connect } from "react-redux";
-import { login } from "../actions";
+import { register } from "../actions";
 import Loader from "react-loader-spinner";
 
 import { Form, FormGroup, Input, Label, Button, Fade, Col } from "reactstrap";
 
-class Login extends React.Component {
+class Register extends React.Component {
   state = {
-    loginInfo: {
+    registrationInfo: {
       username: "",
-      password: ""
+      password: "",
+      email: ''
     }
   };
 
   handleChange = e => {
     this.setState({
-      loginInfo: {
-        ...this.state.loginInfo,
+      registrationInfo: {
+        ...this.state.registrationInfo,
         [e.target.name]: e.target.value
       }
     });
   };
 
-  login = e => {
+  register = e => {
     e.preventDefault();
     this.props
-      .login(this.state.loginInfo)
-      .then(() => this.props.history.push("/logged-in"));
+      .register(this.state.registrationInfo)
+      .then(() => this.props.history.push("/login"));
   };
 
   render() {
     return (
-      <div className="login-form">
-        <Form onSubmit={this.login}>
+      <div className="registration-form">
+        <Form onSubmit={this.register}>
           <FormGroup row>
             <Label for="username" sm={2} size="lg">
               Username
@@ -41,7 +42,7 @@ class Login extends React.Component {
               <Input
                 type="text"
                 name="username"
-                value={this.state.loginInfo.username}
+                value={this.state.registrationInfo.username}
                 onChange={this.handleChange}
                 placeholder="username"
                 bsSize="lg"
@@ -49,26 +50,41 @@ class Login extends React.Component {
             </Col>
           </FormGroup>
           <FormGroup row>
-            <Label for="exampleEmail" sm={2} size="lg">
+            <Label for="password" sm={2} size="lg">
               Password
             </Label>
             <Col sm={2}>
               <Input
                 type="password"
                 name="password"
-                value={this.state.loginInfo.password}
+                value={this.state.registrationInfo.password}
                 onChange={this.handleChange}
                 placeholder="password"
+                bsSize="lg"
+              />
+            </Col>
+            </FormGroup>
+            <FormGroup row>
+            <Label for="email" sm={2} size="lg">
+              Email
+            </Label>
+            <Col sm={2}>
+              <Input
+                type="email"
+                name="email"
+                value={this.state.registrationInfo.email}
+                onChange={this.handleChange}
+                placeholder="email"
                 bsSize="lg"
               />
             </Col>
           </FormGroup>
 
           <Button>
-            {this.props.loggingIn ? (
+            {this.props.registering ? (
               <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
             ) : (
-              "Log in"
+              "Register"
             )}
           </Button>
         </Form>
@@ -79,11 +95,11 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    loggingIn: state.loggingIn
+    registering: state.registering
   };
 };
 
 export default connect(
   mapStateToProps,
-  { login }
-)(Login);
+  { register }
+)(Register);

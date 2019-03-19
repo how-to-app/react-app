@@ -2,7 +2,10 @@ import {
     LOGIN_START,
     GET_HOWTOS_START,
     GET_HOWTOS_WIN,
-    GET_HOWTOS_LOSE
+    GET_HOWTOS_LOSE,
+    REGISTER_START,
+    REGISTER_SUCCESS,
+    REGISTER_FAILURE
 } from '../actions';
 
 const initialState ={
@@ -10,7 +13,8 @@ const initialState ={
     errorCode: '',
     gettingHowTos: false,
     howtos: [],
-    loggingIn: false
+    loggingIn: false,
+    registering: false
 }
 
 const reducer = (state= initialState, action) =>{
@@ -42,6 +46,28 @@ const reducer = (state= initialState, action) =>{
             return{
                 ...state,
                 errorCode: action.payload.status
+            }
+        }
+
+        case REGISTER_START:{
+            return{
+                ...state,
+                error:"",
+                registering: true
+            }
+        }
+        case REGISTER_SUCCESS:{
+            return{
+                ...state,
+                error: '',
+                registering: false,  
+            }
+        }
+        case REGISTER_FAILURE:{
+            return{
+                ...state,
+                error: 'FAILED'
+                  
             }
         }
         default: 
