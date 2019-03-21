@@ -130,7 +130,7 @@ render(){
             {this.props.addingHowTo ? (
               <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
             ) : (
-              "Add Your How-To"
+              "Edit Your How-To"
             )}
           </Button>
         </Form>

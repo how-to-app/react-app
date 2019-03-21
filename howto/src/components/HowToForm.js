@@ -1,14 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getHowTos } from "../actions";
 import { addHowTo } from "../actions";
-import Loader from "../actions";
+//import Loader from "react-loader-spinner";
 import { Form, FormGroup, Input, Label, Button, Fade, Col } from "reactstrap";
 
 class HowToForm extends React.Component {
   state = {
     howto: {
-      img: "",
+      image: "",
       title: "",
       step1: "",
       step2: "",
@@ -30,11 +29,11 @@ class HowToForm extends React.Component {
   addHowTo = e => {
     e.preventDefault();
     this.props.addHowTo(this.state.howto).then(() => {
-      this.props.history.push("/logged-in");
+      this.props.history.push("/howtolist");
     });
     this.setState({
       howtos: {
-        img: "",
+        image: "",
         title: "",
         step1: "",
         step2: "",
@@ -48,22 +47,8 @@ class HowToForm extends React.Component {
   render() {
     return (
       <div className="add-form">
+      <h2>Add A How-To You Know How To-Do</h2>
         <Form onSubmit={this.addHowTo}>
-          <FormGroup row>
-            <Label for="image" sm={2} size="lg">
-              Image
-            </Label>
-            <Col sm={2}>
-              <Input
-                type="image"
-                name="image"
-                value={this.state.howtos.img}
-                onChange={this.handleChange}
-                placeholder="image url"
-                bsSize="lg"
-              />
-            </Col>
-          </FormGroup>
           <FormGroup row>
             <Label for="title" sm={2} size="lg">
               Title
@@ -72,9 +57,9 @@ class HowToForm extends React.Component {
               <Input
                 type="text"
                 name="title"
-                value={this.state.howtos.title}
+                value={this.state.howto.title}
                 onChange={this.handleChange}
-                placeholder="password"
+                placeholder="Title of Your How-To"
                 bsSize="lg"
               />
             </Col>
@@ -86,10 +71,10 @@ class HowToForm extends React.Component {
             <Col sm={2}>
               <Input
                 type="text"
-                name="Step 1"
-                value={this.state.howtos.step1}
+                name="step1"
+                value={this.state.howto.step1}
                 onChange={this.handleChange}
-                placeholder="email"
+                placeholder="Step 1"
                 bsSize="lg"
               />
             </Col>
@@ -101,10 +86,10 @@ class HowToForm extends React.Component {
             <Col sm={2}>
               <Input
                 type="text"
-                name="Step 2"
-                value={this.state.howtos.step2}
+                name="step2"
+                value={this.state.howto.step2}
                 onChange={this.handleChange}
-                placeholder="email"
+                placeholder="Step 2"
                 bsSize="lg"
               />
             </Col>
@@ -116,10 +101,10 @@ class HowToForm extends React.Component {
             <Col sm={2}>
               <Input
                 type="text"
-                name="Step 3"
-                value={this.state.howtos.step3}
+                name="step3"
+                value={this.state.howto.step3}
                 onChange={this.handleChange}
-                placeholder="email"
+                placeholder="Step 3"
                 bsSize="lg"
               />
             </Col>
@@ -131,36 +116,49 @@ class HowToForm extends React.Component {
             <Col sm={2}>
               <Input
                 type="text"
-                name="Step 4"
-                value={this.state.howtos.step4}
+                name="step4"
+                value={this.state.howto.step4}
                 onChange={this.handleChange}
-                placeholder="email"
+                placeholder="Step 4"
                 bsSize="lg"
               />
             </Col>
           </FormGroup>
           <FormGroup row>
             <Label for="step5" sm={2} size="lg">
-              Step 4
+              Step 5
             </Label>
             <Col sm={2}>
               <Input
                 type="text"
-                name="Step 5"
-                value={this.state.howtos.step5}
+                name="step5"
+                value={this.state.howto.step5}
                 onChange={this.handleChange}
-                placeholder="email"
+                placeholder="Step 5"
+                bsSize="lg"
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="image" sm={2} size="lg">
+              Image
+            </Label>
+            <Col sm={2}>
+              <Input
+                type="url"
+                name="image"
+                value={this.state.howto.image}
+                onChange={this.handleChange}
+                placeholder="image url"
                 bsSize="lg"
               />
             </Col>
           </FormGroup>
           
           <Button>
-            {this.props.addingHowTo ? (
-              <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
-            ) : (
+           
               "Add Your How-To"
-            )}
+            
           </Button>
         </Form>
       </div>
@@ -168,8 +166,8 @@ class HowToForm extends React.Component {
   }
 }
 
-const mapStateToProps = ({ addingHowTo }) => ({
-  addingHowTo
+const mapStateToProps = state => ({
+  
 });
 
 export default connect(

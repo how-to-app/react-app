@@ -59,9 +59,7 @@ export const USER_UNAUTHORIZED = 'USER_UNAUTHORIZED';
 export const addHowTo = howto => dispatch => {
     dispatch({ type: ADD_HOWTO_START });
     return axios
-      .post('', howto, {
-        headers: { Authorization: localStorage.getItem('token') }
-      })
+      .post('https://limitless-fjord-83997.herokuapp.com/api/cards', howto) 
       .then(res => {
         dispatch({ type: ADD_HOWTO_SUCCESS, payload: res.data });
       })
@@ -82,7 +80,7 @@ export const DELETE_HOWTO_FAILURE = 'DELETE_HOWTO_FAILURE';
 // export const deleteHowTo = howto => dispatch => {
 //     dispatch({ type: DELETE_HOWTO_START });
 //     return axios
-//     .delete(`https://limitless-fjord-83997.herokuapp.com/api/howtos/${id}`, {
+//     .delete(`https://limitless-fjord-83997.herokuapp.com/api/${id}/cards`, {
 //       headers: { Authorization: localStorage.getItem('token') }
 //     })
 //     .then(res => {
@@ -106,7 +104,7 @@ export const EDIT_HOWTO_FAILURE = 'EDIT_HOWTO_FAILURE';
 // export const editHowTo = howto => dispatch => {
 //   dispatch({ type: EDIT_HOWTO_START });
 //   return axios
-//     .put(`https://limitless-fjord-83997.herokuapp.com/api/howtos/${howto.id}`, howto, {
+//     .put(`https://limitless-fjord-83997.herokuapp.com/api/${card.id}/cards/`, howto, {
 //       headers: { Authorization: localStorage.getItem('token') }
 //     })
 //     .then(res => {

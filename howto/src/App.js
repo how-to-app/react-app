@@ -7,6 +7,8 @@ import Login from "./components/Login";
 import HowToList from "./components/HowToList";
 import Register from "./components/Register";
 import EditForm from './components/EditForm';
+import HowTo from './components/HowTo';
+import HowToForm from './components/HowToForm';
 
 class App extends Component {
   render() {
@@ -18,16 +20,19 @@ class App extends Component {
             <Link to="/howtolist">Log In</Link>
             <Link to="/register"> Register </Link>
             <Link to='/howtos'> How Tos</Link>
-            <Link to= '/test'>Test </Link>
+            <Link to= '/addhowto'>Add How-To</Link>
 
           </div>
 
+          
           <Route path = "/test" component ={HowToList} />
-
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
+          <Route path='/howto/:id' component={HowTo} />
+          <PrivateRoute exact path ='/howto/:id' component={HowTo} />
           <PrivateRoute exact path="/howtolist" component={HowToList} />
           <PrivateRoute exact path="/edit" component={EditForm} />
+          <PrivateRoute exact path="/addhowto" component={HowToForm} />
         </div>
       </Router>
     );

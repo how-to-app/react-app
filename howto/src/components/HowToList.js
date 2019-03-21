@@ -1,52 +1,68 @@
-import React from 'react';
-import {getHowTos, editHowTo, addHowTo, deleteHowTo} from '../actions';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import React from "react";
+import { getHowTos, editHowTo, addHowTo, deleteHowTo } from "../actions";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
+export class HowToList extends React.Component {
+  state = {
+    deletingHowToId: null,
+    editingHowToId: null,
+   
+  };
 
-export class HowToList extends React.Component{
-    state={
-        deletingHowToId: null,
-        editingHowToId: null,
-        blank: []
-    }
+  componentDidMount() {
+    //console.log( this.props.getHowTos());
+    this.props.getHowTos();
+  }
 
-    componentDidMount(){
-        
-        //console.log( this.props.getHowTos());
-        this.props.getHowTos();
-        this.setState({
-            // ...this.state,
-            blank: [this.props.howtos.cards]
+  clickHandler(e){
+      e.preventDefault();
+      console.log(e.target);
+  }
 
-        })
-       
-    }
+  // deleteHowTo = id =>{
+  //     this.setState({deletingHowToId: id});
+  //     this.props.deleteHowTo(id);
+  // }
 
-    // deleteHowTo = id =>{
-    //     this.setState({deletingHowToId: id});
-    //     this.props.deleteHowTo(id);
-    // }
+  // editHowTo = (e, howto) =>{
+  //     e.preventDefault();
+  //     this.props.editHowTo(howto).then(() =>{
+  //         this.setState({editingHowToId: null})
+  //     });
+  // };
+  render() {
+    return (
+      <div className="friend-card">
+        <h1>Learn How To Do What You Wanna Do:</h1>
+        <h2>Contribute to the Cause:</h2>
+        <button>Add How-To</button>
+        {!this.props.cards ? (
+          <p>Fetching how-tos</p>
+        ) : (
+          this.props.cards.map((card, index) => {
+            return (
+              <div>
+                <h1 onClick={this.clickHandler}>{card.title}</h1>
+                <img src={card.image} alt="Dancing Fool" />
+                <h4>1. {card.step1}</h4>
+                {!card.step2 ? (
+                    null
+                ): (<h4>2. {card.step2}</h4>)}
+                {!card.step3 ? (
+                    null
+                ): (<h4>3. {card.step3}</h4>)}
+                {!card.step4 ? (
+                    null
+                ): (<h4>4. {card.step4}</h4>)}
+                {!card.step5 ? (
+                    null
+                ): (<h5>5. {card.step5}</h5>)}
 
-    // editHowTo = (e, howto) =>{
-    //     e.preventDefault();
-    //     this.props.editHowTo(howto).then(() =>{
-    //         this.setState({editingHowToId: null})
-    //     });
-    // };
-    render(){
-        
-        return(
-        <div className="friend-card">
-        <h1>It Rendered</h1>
-        {console.log('Props: ')}
-        {console.log(this.props)}
-        {console.log("Cards: ")}
-        {console.log(this.props.howtos.cards)}
-        {console.log("How Tos:")}
-        {console.log(this.props.howtos)}
-        {console.log(this.state.blank)}
-        
+              </div>
+            );
+          })
+        )}
 
         {/* {this.state.blank.map((card, index) =>{
 
@@ -55,23 +71,18 @@ export class HowToList extends React.Component{
             )
 
         })} */}
-        
-        </div>
-        )
-    }
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = ({
-    howtos,
-}) => ({
-    howtos
-})
+const mapStateToProps = state => ({
+  cards: state.howtos.cards
+});
 
 export default withRouter(
-    connect(
-        mapStateToProps,
-        {getHowTos}
-    )(HowToList)
-)
-
-
+  connect(
+    mapStateToProps,
+    { getHowTos }
+  )(HowToList)
+);
