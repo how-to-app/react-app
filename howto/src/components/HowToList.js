@@ -1,5 +1,5 @@
 import React from "react";
-import { getHowTos, editHowTo, addHowTo, deleteHowTo } from "../actions";
+import { getHowTos, getOneHowTo} from "../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
@@ -13,11 +13,14 @@ export class HowToList extends React.Component {
   componentDidMount() {
     //console.log( this.props.getHowTos());
     this.props.getHowTos();
+
   }
 
-  clickHandler(e){
-      e.preventDefault();
-      console.log(e.target);
+  clickHandler(event, card){
+      event.preventDefault();
+      this.props.getOneHowTo(card.id);
+      this.props.history.push(`/howto/${card.id}`);
+
   }
 
   // deleteHowTo = id =>{
@@ -42,9 +45,9 @@ export class HowToList extends React.Component {
         ) : (
           this.props.cards.map((card, index) => {
             return (
-              <div>
-                <h1 onClick={this.clickHandler}>{card.title}</h1>
-                <img src={card.image} alt="Dancing Fool" />
+              <div onClick={(event) => this.clickHandler(event, card)}>
+                <h1>{card.title}</h1>
+                <img src={card.image} alt="How-toImage" />
                 <h4>1. {card.step1}</h4>
                 {!card.step2 ? (
                     null
@@ -78,11 +81,12 @@ export class HowToList extends React.Component {
 
 const mapStateToProps = state => ({
   cards: state.howtos.cards
+ 
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getHowTos }
+    { getHowTos,  getOneHowTo }
   )(HowToList)
 );

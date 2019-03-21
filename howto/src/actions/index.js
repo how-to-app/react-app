@@ -13,6 +13,30 @@ export const login = whodatis => dispatch =>{
     });
 };
 
+export const GET_AHOWTO_START = 'GET_AHOWTO_START';
+export const GET_AHOWTO_SUCCESS = 'GET_AHOWTO_SUCCESS';
+export const GET_AHOWTO_FAILURE = 'GET_AHOWTO_FAILURE';
+
+export const getOneHowTo = (id) => dispatch =>{
+  dispatch({type: GET_AHOWTO_START});
+  axios
+      .get(`https://limitless-fjord-83997.herokuapp.com/api/cards/${id}`)
+            
+      .then(res=>{
+        console.log('Then: ')
+          console.log(res);
+          dispatch({type: GET_AHOWTO_SUCCESS, payload: res.data})
+      })
+      .catch(err => {
+          console.log(err.response);
+          // if (err.response.status === 403){
+          //     localStorage.removeItem('token')
+          // }
+          dispatch({type: GET_AHOWTO_FAILURE, payload: err.response})
+      });
+      
+};
+
 export const getHowTos = () => dispatch =>{
     dispatch({type: GET_HOWTOS_START});
     axios
