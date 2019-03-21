@@ -7,14 +7,19 @@ import {withRouter} from 'react-router-dom';
 export class HowToList extends React.Component{
     state={
         deletingHowToId: null,
-        editingHowToId: null
+        editingHowToId: null,
+        blank: []
     }
 
     componentDidMount(){
-        console.log("FUUUCK")
-        console.log( this.props.getHowTos());
+        
+        //console.log( this.props.getHowTos());
         this.props.getHowTos();
-       
+        this.setState({
+            // ...this.state,
+            blank: [this.props.howtos.cards]
+
+        })
        
     }
 
@@ -30,14 +35,27 @@ export class HowToList extends React.Component{
     //     });
     // };
     render(){
-        this.props.howtos.map(howto =>{
-            console.log('99999999999999');
-            console.log(howto);
-
-        })
+        
         return(
         <div className="friend-card">
         <h1>It Rendered</h1>
+        {console.log('Props: ')}
+        {console.log(this.props)}
+        {console.log("Cards: ")}
+        {console.log(this.props.howtos.cards)}
+        {console.log("How Tos:")}
+        {console.log(this.props.howtos)}
+        {console.log(this.state.blank)}
+        
+
+        {/* {this.state.blank.map((card, index) =>{
+
+            return(
+                <h1>{card.title}</h1>
+            )
+
+        })} */}
+        
         </div>
         )
     }

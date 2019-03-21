@@ -16,18 +16,19 @@ export const login = whodatis => dispatch =>{
 export const getHowTos = () => dispatch =>{
     dispatch({type: GET_HOWTOS_START});
     axios
-        .get('/', {
-            headers: {Authorization: localStorage.getItem('token')}
-        })
+        .get('https://limitless-fjord-83997.herokuapp.com/api/cards')
+            //headers: {Authorization: localStorage.getItem('token')}
+           
         .then(res=>{
+          console.log('Then: ')
             console.log(res);
-            dispatch({type: GET_HOWTOS_WIN, payload: res.data.data})
+            dispatch({type: GET_HOWTOS_WIN, payload: res.data})
         })
         .catch(err => {
             console.log(err.response);
-            if (err.response.status === 403){
-                localStorage.removeItem('token')
-            }
+            // if (err.response.status === 403){
+            //     localStorage.removeItem('token')
+            // }
             dispatch({type: GET_HOWTOS_LOSE, payload: err.response})
         });
         

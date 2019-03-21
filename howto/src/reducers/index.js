@@ -43,6 +43,7 @@ const reducer = (state= initialState, action) =>{
         }
         case GET_HOWTOS_WIN:{
             console.log(action.payload);
+            console.log('TEEESSSSSSTTTTT');
             return{
                 ...state,
                 error: '',
