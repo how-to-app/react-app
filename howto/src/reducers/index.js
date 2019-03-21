@@ -5,7 +5,13 @@ import {
     GET_HOWTOS_LOSE,
     REGISTER_START,
     REGISTER_SUCCESS,
-    REGISTER_FAILURE
+    REGISTER_FAILURE,
+    ADD_HOWTO_START,
+    ADD_HOWTO_SUCCESS,
+    ADD_HOWTO_FAILURE,
+    EDIT_HOWTO_START,
+    EDIT_HOWTO_SUCCESS,
+    EDIT_HOWTO_FAILURE
 } from '../actions';
 
 const initialState ={
@@ -14,7 +20,10 @@ const initialState ={
     gettingHowTos: false,
     howtos: [],
     loggingIn: false,
-    registering: false
+    registering: false,
+    addingHowTo: false,
+    editingHowTo: false,
+    token: localStorage.getItem('token')
 }
 
 const reducer = (state= initialState, action) =>{
@@ -68,6 +77,48 @@ const reducer = (state= initialState, action) =>{
                 ...state,
                 error: 'FAILED'
                   
+            }
+        }
+        case ADD_HOWTO_START:{
+            return{
+                ...state,
+                addingFriend: true
+
+            }
+        }
+        case ADD_HOWTO_SUCCESS:{
+            return{
+                ...state,
+                addingHowTo: false,
+                howtos: action.payload
+            }
+        }
+        case ADD_HOWTO_FAILURE:{
+            return{
+            ...state,
+            error: 'Ded'
+            }
+        } 
+        case EDIT_HOWTO_START:{
+            return{
+                ...state,
+                editingHowTo: true
+
+            }
+        }
+        case EDIT_HOWTO_SUCCESS:{
+            return{
+                ...state,
+                editingHowto: false,
+                howtos: action.payload
+
+            }
+        }
+        case EDIT_HOWTO_FAILURE:{
+            return{
+                ...state,
+                editingHowTo: false,
+                error: 'Ded'
             }
         }
         default: 

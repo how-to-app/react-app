@@ -6,6 +6,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/Login";
 import HowToList from "./components/HowToList";
 import Register from "./components/Register";
+import EditForm from './components/EditForm';
 
 class App extends Component {
   render() {
@@ -14,13 +15,19 @@ class App extends Component {
         <div className="App">
           <div className="nav-bar">
             <Link to="/home">Home</Link>
-            <Link to="/logged-in">Log In</Link>
+            <Link to="/howtolist">Log In</Link>
             <Link to="/register"> Register </Link>
+            <Link to='/howtos'> How Tos</Link>
+            <Link to= '/test'>Test </Link>
+
           </div>
+
+          <Route path = "/test" component ={HowToList} />
 
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
-          <PrivateRoute exact path="/logged-in" component={HowToList} />
+          <PrivateRoute exact path="/howtolist" component={HowToList} />
+          <PrivateRoute exact path="/edit" component={EditForm} />
         </div>
       </Router>
     );
