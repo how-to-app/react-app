@@ -4,9 +4,13 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 class HowTo extends React.Component{
+
     deleteHowTo = id =>{
-        this.props.deleteHowTo(id)
+        console.log("Clicked me: " +  id);
+        deleteHowTo(id)
     }
+
+
     render(){
     return(
         <div> 
@@ -22,7 +26,7 @@ class HowTo extends React.Component{
         <h4>{this.props.card.step3}</h4>
         <h4>{this.props.card.step4}</h4>
         <h4>{this.props.card.step5}</h4>
-        <button onClick={() => this.deleteHowTo(this.props.card)}>Delete Your How-To</button>
+        <button onClick={() => this.deleteHowTo(this.props.card.id)}>Delete Your How-To</button>
         </div>
         )}
 

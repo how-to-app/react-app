@@ -166,7 +166,11 @@ class HowToForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  
+});
 
 export default connect(
+  mapStateToProps,
   { addHowTo }
 )(HowToForm);

@@ -99,26 +99,24 @@ export const addHowTo = howto => dispatch => {
 export const DELETE_HOWTO_START = 'DELETE_HOWTO_START';
 export const DELETE_HOWTO_SUCCESS = 'DELETE_HOWTO_SUCCESS';
 export const DELETE_HOWTO_FAILURE = 'DELETE_HOWTO_FAILURE';
-//export const USER_UNAUTHORIZED = 'USER_UNAUTHORIZED';
 
-// export const deleteHowTo = howto => dispatch => {
-//     dispatch({ type: DELETE_HOWTO_START });
-//     return axios
-//     .delete(`https://limitless-fjord-83997.herokuapp.com/api/${id}/cards`, {
-//       headers: { Authorization: localStorage.getItem('token') }
-//     })
-//     .then(res => {
-//       dispatch({ type: DELETE_HOWTO_SUCCESS, payload: res.data });
-//     })
-//     .catch(err => {
-//       console.log('Ded: ', err.response);
-//       if (err.response.status === 403) {
-//         dispatch({ type: USER_UNAUTHORIZED, payload: err.response });
-//       } else {
-//         dispatch({ type: DELETE_HOWTO_FAILURE, payload: err.response });
-//       }
-//     });
-//   };
+
+export const deleteHowTo = howto => dispatch => { 
+    dispatch({ type: DELETE_HOWTO_START });
+    
+    return axios
+    
+    .delete(`https://limitless-fjord-83997.herokuapp.com/api/cards/${howto}`)
+    
+    .then(res => {
+      dispatch({ type: DELETE_HOWTO_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err.res);
+      dispatch({ type: DELETE_HOWTO_FAILURE, payload: err.response });
+      
+    });
+  };
 
 
 export const EDIT_HOWTO_START = 'EDIT_HOWTO_START';
