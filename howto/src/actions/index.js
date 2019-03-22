@@ -123,21 +123,19 @@ export const EDIT_HOWTO_START = 'EDIT_HOWTO_START';
 export const EDIT_HOWTO_SUCCESS = 'EDIT_HOWTO_SUCCESS';
 export const EDIT_HOWTO_FAILURE = 'EDIT_HOWTO_FAILURE';
 
-// export const editHowTo = howto => dispatch => {
-//   dispatch({ type: EDIT_HOWTO_START });
-//   return axios
-//     .put(`https://limitless-fjord-83997.herokuapp.com/api/${card.id}/cards/`, howto, {
-//       headers: { Authorization: localStorage.getItem('token') }
-//     })
-//     .then(res => {
-//       dispatch({ type: EDIT_HOWTO_SUCCESS, payload: res.data });
-//     })
-//     .catch(err => {
-//       if (err.response.status === 403) {
-//         dispatch({ type: USER_UNAUTHORIZED, payload: err.response });
-//       } else {
-//         dispatch({ type: EDIT_HOWTO_FAILURE, payload: err.response });
-//       }
-//     });
-// };
+export const editHowTo = howto => dispatch => {
+  dispatch({ type: EDIT_HOWTO_START });
+  return axios
+    .put(`https://limitless-fjord-83997.herokuapp.com/api/cards/${howto.id}`, howto)
+    .then(res => {
+      dispatch({ type: EDIT_HOWTO_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      if (err.response.status === 403) {
+        dispatch({ type: USER_UNAUTHORIZED, payload: err.response });
+      } else {
+        dispatch({ type: EDIT_HOWTO_FAILURE, payload: err.response });
+      }
+    });
+};
     
