@@ -2,6 +2,7 @@ import React from "react";
 import { getHowTos, getOneHowTo} from "../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import './HowToList.css';
 
 export class HowToList extends React.Component {
   state = {
@@ -35,20 +36,22 @@ export class HowToList extends React.Component {
   //     });
   // };
   render() {
+    
     return (
+      
       <div className="friend-card">
+        
         <h1>Learn How To Do What You Wanna Do:</h1>
-        <h2>Contribute to the Cause:</h2>
-        <button>Add How-To</button>
+        
         {!this.props.cards ? (
           <p>Fetching how-tos</p>
         ) : (
           this.props.cards.map((card, index) => {
             return (
-              <div onClick={(event) => this.clickHandler(event, card)}>
+              <div class="a-card" onClick={(event) => this.clickHandler(event, card)}>
                 <h1>{card.title}</h1>
                 <img src={card.image} alt="How-toImage" />
-                <h4>1. {card.step1}</h4>
+                {/* <h4>1. {card.step1}</h4>
                 {!card.step2 ? (
                     null
                 ): (<h4>2. {card.step2}</h4>)}
@@ -60,7 +63,7 @@ export class HowToList extends React.Component {
                 ): (<h4>4. {card.step4}</h4>)}
                 {!card.step5 ? (
                     null
-                ): (<h5>5. {card.step5}</h5>)}
+                ): (<h5>5. {card.step5}</h5>)} */}
 
               </div>
             );
@@ -75,6 +78,7 @@ export class HowToList extends React.Component {
 
         })} */}
       </div>
+      
     );
   }
 }

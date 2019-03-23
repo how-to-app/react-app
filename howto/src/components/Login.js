@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { login } from "../actions";
 import Loader from "react-loader-spinner";
+import './HowToList.css';
 
 import { Form, FormGroup, Input, Label, Button, Fade, Col } from "reactstrap";
 
@@ -26,14 +27,13 @@ class Login extends React.Component {
     e.preventDefault();
     this.props
       .login(this.state.loginInfo)
-      .then(() => this.props.history.push("/howtolist"));
-      
+      .then(() => this.props.history.push("/howtolist"));  
   };
 
   render() {
     return (
       <div className="login-form">
-        <Form onSubmit={this.login}>
+        <form onSubmit={this.login}>
           <FormGroup row>
             <Label for="username" sm={2} size="lg">
               Username
@@ -63,16 +63,20 @@ class Login extends React.Component {
                 bsSize="lg"
               />
             </Col>
-          </FormGroup>
-
-          <Button>
+            
+            <Button>
             {this.props.loggingIn ? (
               <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
             ) : (
               "Log in"
             )}
           </Button>
-        </Form>
+          
+          
+          </FormGroup>
+
+          
+        </form>
       </div>
     );
   }

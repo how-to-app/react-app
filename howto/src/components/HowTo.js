@@ -12,7 +12,10 @@ class HowTo extends React.Component{
 
     deleteHowTo = id =>{
         console.log("Clicked me: " +  id);
-        this.props.deleteHowTo(id)
+        this.props.deleteHowTo(id);
+        this.props.history.push(`/howtolist`);
+        
+        
     }
 
     editHowTo = () =>{

@@ -17,7 +17,8 @@ class EditForm extends React.Component {
         step2: "",
         step3: "",
         step4: "",
-        step5: ""
+        step5: "",
+        cardID: this.props.cardID
       }
     };
   }
@@ -33,7 +34,7 @@ class EditForm extends React.Component {
 
   editHowTo = e => {
     e.preventDefault();
-    console.log(this.state.howto);
+    console.log(this.state);
     this.props.editHowTo(this.state.howto).then(() => {
       history.push("/howtolist");
     });
@@ -45,13 +46,14 @@ class EditForm extends React.Component {
         step2: "",
         step3: "",
         step4: "",
-        step5: ""
+        step5: "", 
+        
       }
     });
   };
 
   render() {
-    console.log(this.state.props);
+    console.log(this.props);
     return (
       <div className="add-form">
       <h2>Edit Your How To-Do</h2>
@@ -174,7 +176,7 @@ class EditForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  //cardID: this.props.cardID
+ 
 });
 
 export default connect(

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { addHowTo } from "../actions";
 //import Loader from "react-loader-spinner";
 import { Form, FormGroup, Input, Label, Button, Fade, Col } from "reactstrap";
-import {history} from './History';
 
 class HowToForm extends React.Component {
   state = {
@@ -30,7 +29,7 @@ class HowToForm extends React.Component {
   addHowTo = e => {
     e.preventDefault();
     this.props.addHowTo(this.state.howto).then(() => {
-      history.push("/howtolist");
+      this.props.history.push("/howtolist");
     });
     this.setState({
       howtos: {
