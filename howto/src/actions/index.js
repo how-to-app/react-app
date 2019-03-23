@@ -125,10 +125,10 @@ export const EDIT_HOWTO_FAILURE = 'EDIT_HOWTO_FAILURE';
 
 export const editHowTo = howto => dispatch => {
   dispatch({ type: EDIT_HOWTO_START });
-  console.log(`HowTO: ${howto}`)
+  console.log(howto)
   return axios
     
-    .put(`https://limitless-fjord-83997.herokuapp.com/api/cards/${howto.cardID}`, howto)
+    .put(`https://limitless-fjord-83997.herokuapp.com/api/cards/${howto.id}`, howto)
     
     .then(res => {
       dispatch({ type: EDIT_HOWTO_SUCCESS, payload: res.data });

@@ -1,6 +1,7 @@
 import React from 'react'
 import {deleteHowTo} from '../actions'
 import {withRouter} from 'react-router-dom';
+import './howTo.css';
 import {connect} from 'react-redux';
 import EditForm from './EditForm';
 
@@ -27,7 +28,7 @@ class HowTo extends React.Component{
         if(this.state.edit){
             console.log("fudge")
             return(
-                <EditForm cardID={this.props.card.id}/>
+                <EditForm card={this.props.card}cardID={this.props.card.id}/>
             )
         }
     return(
