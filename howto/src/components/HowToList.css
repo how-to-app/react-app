@@ -1,0 +1,41 @@
+.friend-card{
+    display: flex;
+    flex-wrap: wrap;
+      
+}
+
+.friend-card h1{
+    width: 100%;
+    color: white;
+    
+}
+
+.a-card{
+    width: 30%;
+    /* border: 1px solid red; */
+    box-shadow: 5px 6px 20px 1px #61dafb;
+    margin: 20px;
+    background-image: url("https://www.designyourway.net/blog/wp-content/uploads/2017/12/carbon_by_xxmironexx-d32g0h.jpg");
+    
+}
+
+.a-card:hover{
+    box-shadow: 5px 6px 20px 1px #ffffff;
+}
+
+.a-card img{
+   max-width: 100%;
+   max-height: 100%;
+}
+
+.login-form{
+    display: flex;
+    
+    
+}
+
+.login-form form{
+   
+    text-align: center;
+    width: 100%;
+}
